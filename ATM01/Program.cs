@@ -8,20 +8,24 @@ namespace ATM01
         {
             var debitCalculator = new DebitAccountWithdrawalFeeCalculator();
  
-            Account debitAccount = new DebitAccount();
-            debitAccount.Deposit(100);
+            WithdrawalAndDepositAccount debitAccount = new DebitAccount();
+            DepositMoneyTo(debitAccount, 100);
             WithdrawMoneyFrom(debitAccount,50, debitCalculator);
 
 
             var creditCalculator = new CreditAccountWithdrawalFeeCalculator();
-            Account creditAccount = new CreditAccount();
-            creditAccount.Deposit(100);
+            WithdrawalAndDepositAccount creditAccount = new CreditAccount();
+            DepositMoneyTo(creditAccount, 100);
             WithdrawMoneyFrom(creditAccount, 150, creditCalculator);
 
            
             
         }
-        static void WithdrawMoneyFrom(Account account, decimal amount, WithDrawalFeeCalculator withDrawalFeeCalculator)
+        static void DepositMoneyTo(DepositAccountBase depositAccount,decimal amount)
+        {
+            depositAccount.Deposit(amount);
+        }
+        static void WithdrawMoneyFrom(WithdrawalAndDepositAccount account, decimal amount, WithDrawalFeeCalculator withDrawalFeeCalculator)
         {
             var totalAmount = withDrawalFeeCalculator.CalculateAmountToWithDraw( amount);
             if (totalAmount > account.Amount)

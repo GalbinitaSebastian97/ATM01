@@ -2,7 +2,7 @@
 
 namespace ATM01
 {
-    class DepositAccount : AccountBase
+    class DepositAccount : DepositAccountBase
     {
         
     }

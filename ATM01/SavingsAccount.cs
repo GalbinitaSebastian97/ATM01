@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ATM01
 {
-    class SavingsAccount : Account
+    class SavingsAccount : WithdrawalAndDepositAccount
     {
 
     }

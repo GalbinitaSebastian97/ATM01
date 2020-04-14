@@ -1,6 +1,6 @@
 ﻿namespace ATM01
 {
-    abstract class AccountBase
+    abstract class DepositAccountBase
     {
         public string IBnan { get; set; }
 
