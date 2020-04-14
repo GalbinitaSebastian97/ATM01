@@ -10,20 +10,27 @@ namespace ATM01
  
             Account debitAccount = new DebitAccount();
             debitAccount.Deposit(100);
-            WithDrawFrom(debitAccount,50, debitCalculator);
+            WithdrawMoneyFrom(debitAccount,50, debitCalculator);
 
 
             var creditCalculator = new CreditAccountWithdrawalFeeCalculator();
             Account creditAccount = new CreditAccount();
             creditAccount.Deposit(100);
-            WithDrawFrom(creditAccount, 50, creditCalculator);
+            WithdrawMoneyFrom(creditAccount, 150, creditCalculator);
+
+            var depositAccount = new DepositAccount();
+            depositAccount.Deposit(100);
+            WithdrawMoneyFrom(depositAccount, 50, debitCalculator);
             
-
-
         }
-        static void WithDrawFrom(Account account, decimal amount, WithDrawalFeeCalculator withDrawalFeeCalculator)
+        static void WithdrawMoneyFrom(Account account, decimal amount, WithDrawalFeeCalculator withDrawalFeeCalculator)
         {
             var totalAmount = withDrawalFeeCalculator.CalculateAmountToWithDraw(account, amount);
+            if (totalAmount > account.Amount)
+            {
+                Console.WriteLine("Insuficient funds");
+                return;
+            }
             account.Withdraw(totalAmount);
             Console.WriteLine("{0}:{1}", account.GetType().Name, account.Amount);
         }
