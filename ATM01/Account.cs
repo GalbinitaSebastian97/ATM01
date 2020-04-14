@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace ATM01
-{
+{   
     abstract class Account
     {
         public string IBnan { get; set; }
 
         public decimal Amount { get; set; }
-        protected abstract decimal CalculateWithdrawalFee(decimal amount);
-
+    
         public decimal Withdraw(decimal amount)
         {
-            decimal amountToWithdraw = amount + CalculateWithdrawalFee(amount);
-            if (Amount < amountToWithdraw)
+            
+            if (Amount < amount)
             {
                 throw new InvalidOperationException("Insufficient funds");
             }
-            Amount -= amountToWithdraw;
+            Amount -= amount;
             return Amount;
         }
 
