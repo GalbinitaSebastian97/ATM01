@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ATM01
+﻿namespace ATM01
 {
     class Program
     {
@@ -9,32 +7,35 @@ namespace ATM01
             var debitCalculator = new DebitAccountWithdrawalFeeCalculator();
  
             WithdrawalAndDepositAccount debitAccount = new DebitAccount();
-            DepositMoneyTo(debitAccount, 100);
-            WithdrawMoneyFrom(debitAccount,50, debitCalculator);
+            Atm.DepositMoneyTo(debitAccount, 100);
+            Atm.WithdrawMoneyFrom(debitAccount,50, debitCalculator);
 
 
             var creditCalculator = new CreditAccountWithdrawalFeeCalculator();
             WithdrawalAndDepositAccount creditAccount = new CreditAccount();
-            DepositMoneyTo(creditAccount, 100);
-            WithdrawMoneyFrom(creditAccount, 150, creditCalculator);
+            Atm.DepositMoneyTo(creditAccount, 100);
+            Atm.WithdrawMoneyFrom(creditAccount, 150, creditCalculator);
 
-           
-            
+
+            TestWithdrawal(new DebitAccount());
+
         }
-        static void DepositMoneyTo(DepositAccountBase depositAccount,decimal amount)
+        static void TestWithdrawal(WithdrawalAndDepositAccount account)
         {
-            depositAccount.Deposit(amount);
-        }
-        static void WithdrawMoneyFrom(WithdrawalAndDepositAccount account, decimal amount, WithDrawalFeeCalculator withDrawalFeeCalculator)
-        {
-            var totalAmount = withDrawalFeeCalculator.CalculateAmountToWithDraw( amount);
-            if (totalAmount > account.Amount)
+            var prevAmount = account.Amount;
+            Atm.DepositMoneyTo(account, 50);
+            Atm.WithdrawMoneyFrom(account, 50, new DummyCalculator());
+            if (account.Amount == prevAmount)
             {
-                Console.WriteLine("Insuficient funds");
-                return;
+                System.Console.WriteLine("Test passed");
             }
-            account.Withdraw(totalAmount);
-            Console.WriteLine("{0}:{1}", account.GetType().Name, account.Amount);
+        }
+    }
+    class DummyCalculator : IWithDrawalFeeCalculator
+    {
+        public decimal CalculateAmountToWithDraw(decimal amount)
+        {
+            return 0m;
         }
     }
 }
