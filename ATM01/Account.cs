@@ -4,11 +4,9 @@ using System.Text;
 
 namespace ATM01
 {
-    abstract class Account
+    abstract class Account:AccountBase
     {
-        public string IBnan { get; set; }
-
-        public decimal Amount { get; set; }
+      
     
         public decimal Withdraw(decimal amount)
         {
@@ -23,9 +21,6 @@ namespace ATM01
             Amount -= amount;
             return amount;
         }
-        public void Deposit(decimal amount)
-        {
-            Amount += amount;
-        }
+
     }
 }
