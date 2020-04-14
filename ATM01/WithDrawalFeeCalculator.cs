@@ -5,7 +5,7 @@ using System.Text;
 namespace ATM01
 {
     class WithDrawalFeeCalculator
-    {
+    {   //incalca principiul OC
         public decimal CalculateAmountToWithDraw(Account account, decimal amount) //template,interfata
                                                                                   //Calculeaza0mi comisionul suma amount pe baza tipului de cont 
         {
@@ -22,7 +22,7 @@ namespace ATM01
             {
                 return 0m;
             }
-            if (account is Savings)
+            if (account is SavingsAccount)
             {
                 return .12m;
             }
