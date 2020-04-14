@@ -6,9 +6,6 @@ namespace ATM01
 {
     class DebitAccount : Account
     {
-        protected override decimal CalculateWithdrawalFee(decimal amount)
-        {
-            return 0m;
-        }
+
     }
 }
