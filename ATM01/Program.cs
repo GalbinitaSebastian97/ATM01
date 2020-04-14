@@ -23,7 +23,7 @@ namespace ATM01
         }
         static void WithdrawMoneyFrom(Account account, decimal amount, WithDrawalFeeCalculator withDrawalFeeCalculator)
         {
-            var totalAmount = withDrawalFeeCalculator.CalculateAmountToWithDraw(account, amount);
+            var totalAmount = withDrawalFeeCalculator.CalculateAmountToWithDraw( amount);
             if (totalAmount > account.Amount)
             {
                 Console.WriteLine("Insuficient funds");

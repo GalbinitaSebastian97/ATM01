@@ -6,7 +6,7 @@ namespace ATM01
 {
     abstract class WithDrawalFeeCalculator
     {   //incalca principiul OC
-        public decimal CalculateAmountToWithDraw(Account account, decimal amount) //template,interfata
+        public decimal CalculateAmountToWithDraw( decimal amount) //template,interfata
         //Calculeaza0mi comisionul suma amount pe baza tipului de cont 
         {
             var comision = CalculateComission(amount);
