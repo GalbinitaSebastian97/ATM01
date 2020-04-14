@@ -3,27 +3,24 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace ATM01
-{   
-    abstract class Account
+{
+    abstract class Account:AccountBase
     {
-        public string IBnan { get; set; }
-
-        public decimal Amount { get; set; }
+      
     
         public decimal Withdraw(decimal amount)
         {
-            
-            if (Amount < amount)
+            return WithDrawInternal(amount);
+        }
+        protected virtual decimal WithDrawInternal(decimal amount)
+        {
+            if (Amount<amount)
             {
-                throw new InvalidOperationException("Insufficient funds");
+                throw new InvalidOperationException("Insuficient funds");
             }
             Amount -= amount;
-            return Amount;
+            return amount;
         }
 
-        public void Deposit(decimal amount)
-        {
-            Amount += amount;
-        }
     }
 }
