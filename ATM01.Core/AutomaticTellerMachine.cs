@@ -1,14 +1,15 @@
 ﻿using System;
-
-namespace ATM01
+using ATM01.Core.Accounts.Base;
+using ATM01.WithdrawalFeeCalculators;
+namespace ATM01.Core
 {
-    class Atm
+    public class AutomaticTellerMachine: IAutomaticTellerMachine
     {
-        public static void DepositMoneyTo(DepositAccountBase depositAccount, decimal amount)
+        public void DepositMoneyTo(IDepositAccount depositAccount, decimal amount)
         {
             depositAccount.Deposit(amount);
         }
-        public static void WithdrawMoneyFrom(WithdrawalAndDepositAccount account, decimal amount, IWithDrawalFeeCalculator withDrawalFeeCalculator)
+        public  void WithdrawMoneyFrom(IWithdrawalAndDepositAccount account, decimal amount, IWithdrawalFeeCalculator withDrawalFeeCalculator)
         {
             var totalAmount = withDrawalFeeCalculator.CalculateAmountToWithDraw(amount);
             if (totalAmount > account.Amount)

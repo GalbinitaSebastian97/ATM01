@@ -1,6 +1,6 @@
-﻿namespace ATM01
+﻿namespace ATM01.WithdrawalFeeCalculators
 {
-    class CreditAccountWithdrawalFeeCalculator : WithDrawalFeeCalculator
+    public class CreditAccountWithdrawalFeeCalculator : WithdrawalFeeCalculator
     {
         protected override decimal CalculateComission(decimal amount)
         {
