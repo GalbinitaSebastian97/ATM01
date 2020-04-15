@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ATM01
+namespace ATM01.Core.Accounts.Base
 {
-    abstract class WithdrawalAndDepositAccount:DepositAccountBase
+    public abstract class WithdrawalAndDepositAccount:DepositAccountBase,IWithdrawalAndDepositAccount
     {
-      
-    
         public decimal Withdraw(decimal amount)
         {
             return WithDrawInternal(amount);

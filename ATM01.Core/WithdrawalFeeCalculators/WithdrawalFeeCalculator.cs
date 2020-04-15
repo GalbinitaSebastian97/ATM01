@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ATM01
+namespace ATM01.WithdrawalFeeCalculators
 {
-    abstract class WithDrawalFeeCalculator :  IWithDrawalFeeCalculator
-    {   //incalca principiul OC
+    public abstract class WithdrawalFeeCalculator :  IWithdrawalFeeCalculator
+    {   
         public decimal CalculateAmountToWithDraw(decimal amount) //template,interfata
         //Calculeazami comisionul suma amount pe baza tipului de cont 
         {
